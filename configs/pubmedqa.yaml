@@ -1,0 +1,24 @@
+task: pubmedqa
+# model:
+#   decomposer_model: google/flan-t5-base
+#   # You may swap to a biomedical MNLI/NLI model if desired.
+#   nli_model: cross-encoder/nli-deberta-v3-base
+#   device: cuda
+
+model:
+  decomposer_backend: openrouter
+  decomposer_model: mistralai/mistral-large
+  decomposer_max_new_tokens: 128
+  decomposer_temperature: 0.0
+  decomposer_api_base_url: ""
+  nli_model: cross-encoder/nli-deberta-v3-base
+  device: cpu
+thresholds:
+  support_entailment: 0.55
+  refute_contradiction: 0.55
+  missing_neutral_max: 0.50
+retrieval:
+  top_k_sents: 20
+run:
+  seed: 13
+  output_dir: runs

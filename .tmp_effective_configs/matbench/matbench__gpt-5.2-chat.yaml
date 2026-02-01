@@ -1,0 +1,17 @@
+task: matbench
+model:
+  decomposer_backend: openrouter
+  decomposer_model: openai/gpt-5.2-chat
+  nli_model: cross-encoder/nli-deberta-v3-base
+  device: cpu
+  decomposer_max_new_tokens: 256
+  decomposer_temperature: 0.0
+thresholds:
+  support_entailment: 0.55
+  refute_contradiction: 0.55
+  missing_neutral_max: 0.5
+retrieval:
+  top_k_sents: 0
+run:
+  seed: 13
+  output_dir: runs
