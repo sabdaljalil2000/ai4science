@@ -21,7 +21,13 @@ It is designed to be:
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -U pip setuptools wheel
+
+pip install -r requirements.txt --prefer-binary # or pip install -e .
+
+export APIKEY="your_api_key_here" #required for LLM Model access
+
+
 ```
 
 ### 0.2 Choose a task
@@ -33,7 +39,7 @@ pip install -r requirements.txt
 python run_experiment.py --task scifact --split dev --config configs/scifact.yaml
 ```
 
-#### B) SciFact-Open (open-domain retrieval + verification)
+<!-- #### B) SciFact-Open (open-domain retrieval + verification)
 1. Download SciFact-Open resources per `scripts/get_scifact_open.md`.
 2. Build the retrieval index (cached):
 ```bash
@@ -42,9 +48,9 @@ python run_experiment.py --task scifact_open --build-index --config configs/scif
 3. Evaluate:
 ```bash
 python run_experiment.py --task scifact_open --split dev --config configs/scifact_open.yaml
-```
+``` -->
 
-#### C) PubMedQA (yes/no/maybe QA)
+#### B) PubMedQA (yes/no/maybe QA)
 1. Download per `scripts/get_pubmedqa.md`.
 2. Run:
 ```bash
@@ -115,18 +121,26 @@ Implemented toggles:
 Example:
 ```bash
 python run_experiment.py --task scifact --split dev --config configs/scifact.yaml --no-abstain
+
 ```
 
 ---
 
-## 4) Repro tips
+## 4) Create run figures
+```bash
+python scripts/collect_and_plot.py --runs-root runs --outdir figures --format pdf
+
+```
+---
+
+## 5) Repro tips
 - Set `seed` in config.
 - Use `TRANSFORMERS_CACHE` env var to reuse model downloads.
 - CPU-only is supported but slow; GPU recommended.
 
 ---
 
-## 5) If you want *exact* parity with your paper
+## 6) If you want *exact* parity with your paper
 If your full paper contains:
 - custom prompts, thresholds, decomposer rules, or a special verifier,
 drop them into:
@@ -134,4 +148,6 @@ drop them into:
 - `src/validity_sci/pipeline/decompose.py` (prompt/rules)
 - `src/validity_sci/models/nli.py` (verifier)
 and rerun.
+
+
 
