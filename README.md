@@ -1,17 +1,13 @@
 # Scientific Validity Under Evidence Scarcity — Reproducible Codebase
 
-This repository is a **runnable reference implementation** of the 4-stage framework described in the provided PDF:
+This repository is a **runnable reference implementation**:
 1) **Condition decomposition** → 2) **Evidence auditing** → 3) **Decision logic with abstention** → 4) **Validity Certificate + cited explanation**,
-plus **Minimal Sufficient Evidence (MSE)** evaluation and **risk–coverage** analysis. fileciteturn0file0
+plus **Minimal Sufficient Evidence (MSE)** evaluation and **risk–coverage** analysis.
 
 It is designed to be:
 - **Interpretable** (condition-level logs)
 - **Trustworthy** (abstention when evidence is insufficient)
 - **Reproducible** (configs, deterministic seeds, cached artifacts)
-
-> Notes / scope
-> - The PDF is a 4-page methodology overview and does not specify all engineering details (e.g., exact decomposition prompts/models).
-> - This codebase therefore implements a faithful **operationalization** with **pluggable components** (swap models/prompts) while keeping defaults lightweight.
 
 ---
 
@@ -55,11 +51,6 @@ python run_experiment.py --task scifact_open --split dev --config configs/scifac
 2. Run:
 ```bash
 python run_experiment.py --task pubmedqa --split dev --config configs/pubmedqa.yaml
-```
-
-#### D) Matbench (materials property prediction)
-```bash
-python run_experiment.py --task matbench --config configs/matbench.yaml
 ```
 
 ---
@@ -140,14 +131,6 @@ python scripts/collect_and_plot.py --runs-root runs --outdir figures --format pd
 
 ---
 
-## 6) If you want *exact* parity with your paper
-If your full paper contains:
-- custom prompts, thresholds, decomposer rules, or a special verifier,
-drop them into:
-- `configs/*.yaml` (thresholds)
-- `src/validity_sci/pipeline/decompose.py` (prompt/rules)
-- `src/validity_sci/models/nli.py` (verifier)
-and rerun.
 
 
 
