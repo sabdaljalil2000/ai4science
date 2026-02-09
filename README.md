@@ -102,12 +102,11 @@ All outputs go to `runs/<task>/<timestamp>/`:
 
 ---
 
-## 3) Baselines and ablations (as in PDF)
+## 3) Baselines and ablations 
 Implemented toggles:
 - `--no-decompose`
 - `--no-audit`
 - `--no-abstain`
-- `--no-mse`
 
 Example:
 ```bash
